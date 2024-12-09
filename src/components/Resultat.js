@@ -1,13 +1,16 @@
-import { useSelector } from "react-redux";
-
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { resetQuiz } from "../Store/quizSlice";
+import { useNavigate } from "react-router-dom";
 
 const Resultat = () => {
-  const { score, questions, setScore, setQuestions } = useSelector((state) => state.quiz); 
-
+  const { score, questions } = useSelector((state) => state.quiz);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleRetry = () => {
-    setScore(0);
-    setQuestions([]);
+    dispatch(resetQuiz());
+    navigate("/");
   };
 
   return (

@@ -19,6 +19,8 @@ const quizSlice = createSlice({
     score: 0,
     loading: false,
     error: null,
+    amount: 10, // Valeur par défaut pour le nombre de questions
+    difficulty: "easy", // Valeur par défaut pour la difficulté
   },
   reducers: {
     incrementScore: (state) => {
@@ -27,6 +29,11 @@ const quizSlice = createSlice({
     resetQuiz: (state) => {
       state.questions = [];
       state.score = 0;
+      state.error = null; // Réinitialise les erreurs
+    },
+    setConfig: (state, action) => {
+      state.amount = action.payload.amount;
+      state.difficulty = action.payload.difficulty;
     },
   },
   extraReducers: (builder) => {
@@ -41,10 +48,11 @@ const quizSlice = createSlice({
       })
       .addCase(fetchQuestions.rejected, (state, action) => {
         state.loading = false;
-        state.error = "Erreur lors de la récupération des questions.";
+        state.error =
+          action.error.message || "Erreur lors de la récupération des questions.";
       });
   },
 });
 
-export const { incrementScore, resetQuiz } = quizSlice.actions;
+export const { incrementScore, resetQuiz, setConfig } = quizSlice.actions;
 export default quizSlice.reducer;

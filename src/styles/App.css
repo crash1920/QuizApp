@@ -1,25 +1,138 @@
+/* Style général */
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Poppins', Arial, sans-serif;
   margin: 0;
   padding: 0;
   background-color: #f4f4f4;
 }
 
+/* Header */
 header {
-  background-color: #282c34;
+  background: linear-gradient(90deg, #020103 0%, #063485 100%);
   padding: 20px;
-  color: white;
+  color: rgb(255, 255, 255);
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h1 {
+  font-size: 28px;
+  margin: 0;
+}
+
+header p {
+  margin: 0;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+header img {
+  height: 40px;
+}
+
+/* Boutons */
+button {
+  margin: 10px;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 5px;
+  background-color: #2575fc;
+  color: rgb(22, 1, 1); /* Explicitly setting font color to white */
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s, background-color 0.3s;
   text-align: center;
 }
 
-button {
-  margin: 10px;
-  padding: 10px 20px;
-  border: none;
-  background-color: #61dafb;
-  cursor: pointer;
+button:hover {
+  background-color: #1e63d2;
+  transform: translateY(-2px);
 }
 
-button:hover {
-  background-color: #21a1f1;
+button:active {
+  transform: translateY(0);
+}
+
+button[style*="lightgreen"] {
+  color: black; /* Set font color for correct answer button */
+}
+
+button[style*="red"] {
+  color: white; /* Set font color for incorrect answer button */
+}
+
+
+/* Cartes */
+.labels {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 15px; /* Espacement entre les labels */
+}
+
+.labels label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+input,
+select {
+  flex: 1; /* Prend toute la largeur disponible */
+  padding: 10px;
+  margin-left: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+input[type="number"] {
+  width: 60px; /* Largeur spécifique pour l'input number */
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 600px;
+  text-align: center;
+}
+/* Titres et paragraphes */
+h1,
+h2 {
+  font-size: 24px;
+  color: #333;
+}
+
+p {
+  font-size: 18px;
+  color: #666;
+}
+
+/* Footer */
+footer {
+  background-color: #282c34;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  font-size: 14px;
+}
+
+footer a {
+  color: #61dafb;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
 }
