@@ -16,6 +16,12 @@ const Quiz = () => {
 
   const currentQuestion = questions[currentIndex];
 
+  // Fonction pour décoder les entités HTML
+  const decodeHtmlEntities = (text) => {
+    const parser = new DOMParser();
+    return parser.parseFromString(text, "text/html").body.textContent;
+  };
+
   // Chargement des questions depuis l'API
   useEffect(() => {
     const { amount, difficulty, category } = location.state || {
@@ -63,7 +69,11 @@ const Quiz = () => {
       setFeedback("Bonne réponse !");
     } else {
       setIsCorrect(false);
-      setFeedback("Mauvaise réponse !");
+      setFeedback(
+        `Mauvaise réponse ! La bonne réponse était : ${decodeHtmlEntities(
+          currentQuestion.correct_answer
+        )}`
+      );
     }
     transitionToNextQuestion();
   };
@@ -91,7 +101,7 @@ const Quiz = () => {
 
   return (
     <div className="card">
-      <h2>{currentQuestion.question}</h2>
+      <h2>{decodeHtmlEntities(currentQuestion.question)}</h2>
       <p>Temps restant : {timeLeft} secondes</p>
       {[...currentQuestion.incorrect_answers, currentQuestion.correct_answer]
         .sort()
@@ -111,7 +121,7 @@ const Quiz = () => {
             }}
             disabled={!!selectedAnswer} // Désactiver après avoir sélectionné une réponse
           >
-            {option}
+            {decodeHtmlEntities(option)}
           </button>
         ))}
       {feedback && <p>{feedback}</p>}
